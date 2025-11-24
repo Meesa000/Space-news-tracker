@@ -26,6 +26,8 @@
 
         // add Bootstrap classes
         articleImg.classList.add('card-img-top');
+        articleImg.style.height = '180px';
+        articleImg.style.objectFit = 'cover'; 
         articleTitle.classList.add('card-title');
         articleSummary.classList.add('card-text');
         articleBtn.classList.add('btn', 'btn-primary');
