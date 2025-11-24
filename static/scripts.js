@@ -6,35 +6,57 @@
             )
         }
 
-        function displayData(data)
-        {
-            data.forEach(article =>
-            {
-                
-                let articleTitle = document.createElement('h3')
-                let articleSummary = document.createElement('p')
-                let articleImg = document.createElement('img');
+        function displayData(data) {
+    const mainContainer = document.getElementById('main-container'); // the row container
 
-                articleTitle.innerHTML = article.title;
-                articleSummary.innerHTML = article.summary;
-                articleImg.src = article.img_url;
+    data.forEach(article => {
+        // create elements
+        let articleTitle = document.createElement('h5');
+        let articleSummary = document.createElement('p');
+        let articleImg = document.createElement('img');
+        let articleBtn = document.createElement('a');
 
-                // gets the main container of the page to append each card to
-                let mainContainer = document.getElementById('main-container');
+        // set content
+        articleTitle.innerHTML = article.title;
+        articleSummary.innerHTML = article.summary;
+        articleImg.src = article.img_url || 'https://via.placeholder.com/300x180';
+        articleImg.alt = article.title;
+        articleBtn.innerText = 'Read More';
+        articleBtn.href = article.url || '#';
 
-                let card = document.createElement('div');
-                card.classList.add('article-card')
+        // add Bootstrap classes
+        articleImg.classList.add('card-img-top');
+        articleTitle.classList.add('card-title');
+        articleSummary.classList.add('card-text');
+        articleBtn.classList.add('btn', 'btn-primary');
 
-                // append card to main container
-                mainContainer.appendChild(card);
+        // create card elements
+        let card = document.createElement('div');
+        card.classList.add('card', 'h-100'); // h-100 makes all cards equal height
+        card.style.width = '18rem';
 
-                // append info to each newly created card
-                card.appendChild(articleImg);
-                card.appendChild(articleTitle);
-                card.appendChild(articleSummary);
+        let cardBody = document.createElement('div');
+        cardBody.classList.add('card-body');
 
-                console.log("Data loaded!");
-            })
-        }
-        fetchData()
+        // append title, summary, button to card body
+        cardBody.appendChild(articleTitle);
+        cardBody.appendChild(articleSummary);
+        cardBody.appendChild(articleBtn);
+
+        // append image and card body to card
+        card.appendChild(articleImg);
+        card.appendChild(cardBody);
+
+        // wrap card in a Bootstrap column
+        let col = document.createElement('div');
+        col.classList.add('col-sm-6', 'col-md-4', 'col-lg-3'); // responsive columns
+        col.appendChild(card);
+
+        // append column to the main row container
+        mainContainer.appendChild(col);
+    });
+
+    console.log("Data loaded!");
+}
+ fetchData()
      
