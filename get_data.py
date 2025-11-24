@@ -11,7 +11,7 @@ def get_latest_articles():
     
     articles_list = []
     
-    # article title
+    # loop though json response for articles
     for article in data['results']:
         
         # creates a new dict every loop
@@ -20,11 +20,13 @@ def get_latest_articles():
         # gets the data from title and summary keys from json response and puts it in a new key in the new dict
         new_dict['title'] = article['title']
         new_dict['summary'] = article['summary']
+        new_dict['url'] = article['url']
+        new_dict['news_site'] = article['news_site']
+        new_dict['img_url'] = article['image_url']
         
         # appends new dict to a list to make a list of dictionaries
         articles_list.append(new_dict)
         
-    print(articles_list)
     return articles_list
     
 
