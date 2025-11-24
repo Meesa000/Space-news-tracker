@@ -5,8 +5,12 @@ base_url = 'https://api.spaceflightnewsapi.net/v4/'
 
 def get_latest_articles():
     
+    parameters = {
+        'limit': '3'
+    }
+    
     articles_url = f"{base_url}articles/"
-    response = requests.get(articles_url)
+    response = requests.get(articles_url, params=parameters)
     data = response.json()
     
     articles_list = []

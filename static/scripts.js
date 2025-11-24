@@ -10,15 +10,30 @@
         {
             data.forEach(article =>
             {
-                // get data
-                let articleTitle = document.createElement('h1')
+                
+                let articleTitle = document.createElement('h3')
                 let articleSummary = document.createElement('p')
+                let articleImg = document.createElement('img');
+
                 articleTitle.innerHTML = article.title;
                 articleSummary.innerHTML = article.summary;
+                // articleImg.src = article.img_url;
+
+                // gets the main container of the page to append each card to
                 let mainContainer = document.getElementById('main-container');
-                mainContainer.appendChild(articleTitle);
-                mainContainer.appendChild(articleSummary);
-                console.log("Data loaded!")
+
+                let card = document.createElement('div');
+                card.classList.add('article-card')
+
+                // append card to main container
+                mainContainer.appendChild(card);
+
+                // append info to each newly created card
+                card.appendChild(articleImg);
+                card.appendChild(articleTitle);
+                card.appendChild(articleSummary);
+
+                console.log("Data loaded!");
             })
         }
         fetchData()
